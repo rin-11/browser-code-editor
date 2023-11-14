@@ -4,7 +4,8 @@ import ReactDOM from "react-dom/client";
 
 // useState for the input in textarea from user and the output code
 // useEffect to startService
-import { useState, useEffect } from 'react'; 
+// useRef to transform code
+import { useState, useEffect, useRef } from 'react'; 
 import { start } from 'repl';
 
 
@@ -13,22 +14,26 @@ const el = document.getElementById("root");
 const root = ReactDOM.createRoot(el!);
 
 const App = () => {
+  const ref = useRef<any>();
   const [input, setInput] = useState('');
   const [code, setCode] = useState('');
 
   const startService = async () => {
-    const service = await esbuild.startService({
+    ref.current = await esbuild.startService({
       worker: true,
       wasmURL:'/esbuild.wasm'
     });
-    console.log(service)
   };
   useEffect(() => {
     startService();
   }, []);
 
   const onClick = () => {
-    console.log(input)
+    // check that startService is working before running code
+    if (!ref.current) {
+      return;
+    }
+    console.log(ref.current);
   };
 
   return (
