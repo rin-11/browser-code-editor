@@ -5,5 +5,5 @@
  - Will have the ability to acces libraries (i.e. axios)
  - The ability to save the code/notes to the local hard drive. 
  - The browser app will be best utilized for practicing algos and taking notes.
-### This project is built using React, Javascript, & Typescript. 
+### This project is built using React & Typescript. 
 - This project utilized ES Build (https://esbuild.github.io/) to transpile & bundle code (all in browser)
