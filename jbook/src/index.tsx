@@ -5,7 +5,13 @@ const el = document.getElementById("root");
 const root = ReactDOM.createRoot(el!);
 
 const App = () => {
-  return <h1>hi</h1>;
+  return <div>
+    <textarea></textarea>
+      <div>
+        <button>Submit</button>
+      </div>
+      <pre></pre>
+  </div>
 };
 
 root.render(<App />);
