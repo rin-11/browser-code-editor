@@ -28,12 +28,17 @@ const App = () => {
     startService();
   }, []);
 
-  const onClick = () => {
+  const onClick = async () => {
     // check that startService is working before running code
     if (!ref.current) {
       return;
     }
-    console.log(ref.current);
+    // transform function the input
+    const result = await ref.current.transform(input, {
+      loader: 'jsx',
+      target: 'es2015'
+    });
+    console.log(result);
   };
 
   return (
