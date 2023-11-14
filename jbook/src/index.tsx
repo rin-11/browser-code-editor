@@ -1,5 +1,5 @@
 import * as esbuild from 'esbuild-wasm';
-
+import axios from 'axios';
 import ReactDOM from "react-dom/client";
 
 // useState for the input in textarea from user and the output code
@@ -46,8 +46,8 @@ const App = () => {
       write: false,
       plugins: [unpkgPathPlugin()]
     })
-    console.log(result);
-    setCode(result.code);
+    // console.log(result);
+    setCode(result.outputFiles[0].text);
   };
 
   return (
