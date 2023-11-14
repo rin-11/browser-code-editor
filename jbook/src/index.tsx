@@ -9,6 +9,8 @@ import { useState, useEffect, useRef } from 'react';
 import { start } from 'repl';
 
 
+import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
+
 const el = document.getElementById("root");
 
 const root = ReactDOM.createRoot(el!);
@@ -34,11 +36,18 @@ const App = () => {
       return;
     }
     // transform function the input
-    const result = await ref.current.transform(input, {
-      loader: 'jsx',
-      target: 'es2015'
-    });
+    // const result = await ref.current.transform(input, {
+    //   loader: 'jsx',
+    //   target: 'es2015'
+    // });
+    const result = await ref.current.build({
+      entryPoints: ['index.js'],
+      bundle: true,
+      write: false,
+      plugins: [unpkgPathPlugin()]
+    })
     console.log(result);
+    setCode(result.code);
   };
 
   return (
