@@ -8,8 +8,9 @@ import ReactDOM from "react-dom/client";
 import { useState, useEffect, useRef } from 'react'; 
 import { start } from 'repl';
 
-
+// PLUGINS
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
+import { fetchPlugin } from './plugins/fetch-plugin';
 
 const el = document.getElementById("root");
 
@@ -44,10 +45,13 @@ const App = () => {
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin(input)],
+      plugins: [
+        unpkgPathPlugin(),
+        fetchPlugin(input)
+      ],
       define: {
         // define process.env.NoDE_ENV as a string of production to handle bundling error
-        'process.env.NODE_ENV': 'production',
+        'process.env.NODE_ENV': "'production'",
         // replace global with window to display some packages in the browser
         global: 'window'
       }
