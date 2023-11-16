@@ -17,14 +17,18 @@ export const fetchPlugin = (inputCode: string) => {
         };
       });
 
-      build.onLoad({ filter: /.css$/ }, async (args: any) => {
+      build.onLoad({ filter: /.*/ }, async (args: any) => {
         const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(
-          args.path
-        );
+            args.path
+          );
+  
+          if (cachedResult) {
+            return cachedResult;
+          }
+      });
 
-        if (cachedResult) {
-          return cachedResult;
-        }
+      build.onLoad({ filter: /.css$/ }, async (args: any) => {
+        
         const { data, request } = await axios.get(args.path);
 
         const result: esbuild.OnLoadResult = {
@@ -38,14 +42,6 @@ export const fetchPlugin = (inputCode: string) => {
       });
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
-        // Check to see if file has already been fetched (stored in the cache)
-        const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(
-          args.path
-        );
-		// if so, return stored file
-        if (cachedResult) {
-          return cachedResult;
-        }
         const { data, request } = await axios.get(args.path);
 
         const result: esbuild.OnLoadResult = {
