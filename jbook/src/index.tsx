@@ -58,6 +58,9 @@ const App = () => {
     })
     // console.log(result);
     setCode(result.outputFiles[0].text);
+    
+    // eval to run code
+    eval(result.outputFiles[0].text);
   };
 
   return (
