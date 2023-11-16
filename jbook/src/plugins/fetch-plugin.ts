@@ -27,14 +27,25 @@ export const fetchPlugin = (inputCode: string) => {
                 return cachedResult;
             }
             const { data, request } = await axios.get(args.path);
-            // Files are stored in key-value pair
-                // key = args.path
-                // value = response/result object
+
+            // check for CSS files 
+            const fileType = args.path.match(/.css$/) ? 'css' : 'jsx';
+            const contents = fileType === 'css' ?
+                `
+                    const style = document.createElement('style');
+                    styler.innerText = 'body { background-color: "red" }';
+                    document.head.appendChild(style);
+                `   : data
+
             const result: esbuild.OnLoadResult = {
                 loader: 'jsx',
-                contents: data,
+                contents,
                 resolveDir: new URL('./', request.responseURL).pathname
             };
+                // Files are stored in key-value pair
+                    // key = args.path
+                    // value = response/result object
+
             // if not, store response in cache and return result
             await fileCache.setItem(args.path, result);
             return result;
