@@ -58,9 +58,14 @@ const App = () => {
     })
     // console.log(result);
     setCode(result.outputFiles[0].text);
-    
+
     // eval to run code
-    eval(result.outputFiles[0].text);
+    // protect against error in code with try/catch
+    try {
+      eval(result.outputFiles[0].text);
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
