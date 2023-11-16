@@ -44,7 +44,7 @@ const App = () => {
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin()],
+      plugins: [unpkgPathPlugin(input)],
       define: {
         // define process.env.NoDE_ENV as a string of production to handle bundling error
         'process.env.NODE_ENV': 'production',
