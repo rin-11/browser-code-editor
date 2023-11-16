@@ -18,7 +18,7 @@ const App = () => {
   const ref = useRef<any>();
   const iframe = useRef<any>();
   const [input, setInput] = useState('');
-  const [code, setCode] = useState('');
+
 
   const startService = async () => {
     ref.current = await esbuild.startService({
@@ -35,6 +35,8 @@ const App = () => {
     if (!ref.current) {
       return;
     }
+
+    iframe.current.srcdoc = html;
 
     const result = await ref.current.build({
       entryPoints: ['index.js'],
@@ -69,6 +71,7 @@ const App = () => {
             const root = document.querySelector('#root');
             root.innerHTML = '<div style="color: #523F3B;"><h2>Runtime Error</h2>' + err + '</div>';
             console.error(err);
+            throw err;
           }
         }, false);
       </script>
@@ -83,11 +86,12 @@ const App = () => {
       value={input} 
       onChange={e => setInput(e.target.value)}>
     </textarea>
+
       <div>
         <button onClick={onClick}>Submit</button>
       </div>
-      <pre>{code}</pre>
-      <iframe ref = {iframe} sandbox="allow-scripts" srcDoc={html} />
+
+      <iframe title="code-preview" ref = {iframe} sandbox="allow-scripts" srcDoc={html} />
   </div>
   );
 };
