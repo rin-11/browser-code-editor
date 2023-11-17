@@ -10,6 +10,8 @@ interface ResizableProps {
 const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
   return (
     <ResizableBox 
+      maxConstraints={[Infinity, window.innerHeight * 0.9]}
+      minConstraints={[Infinity, 50]}
       height={300} 
       width={Infinity}
       resizeHandles={['s']}
