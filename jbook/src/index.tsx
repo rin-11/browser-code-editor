@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import 'bulmaswatch/superhero/bulmaswatch.min.css'
 
-import { useState, useEffect, useRef } from 'react'; 
+import { useState } from 'react'; 
 // useState for the input in textarea from user and the output code
 // useEffect to startService
 // useRef to transform code
