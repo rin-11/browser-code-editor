@@ -13,6 +13,7 @@
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@types/react-resizable": "3.0.2",
+    "@uiw/react-md-editor": "2.1.1",
     "axios": "^1.6.2",
     "bulma": "^0.9.4",
     "bulmaswatch": "^0.8.1",
