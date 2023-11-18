@@ -1,4 +1,5 @@
 import './resizable.css';
+import { useEffect } from 'react';
 import { ResizableBox, ResizableBoxProps } from 'react-resizable';
 
 interface ResizableProps {
@@ -8,6 +9,26 @@ interface ResizableProps {
 
 const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
   let resizableProps: ResizableBoxProps;
+
+   // Handling ResizeObserver loop error
+   useEffect(() => {
+    const resizeErrorListener = (e: ErrorEvent) => {
+      //   prettier-ignore
+      if (e.message ==="ResizeObserver loop completed with undelivered notifications.") {
+              const resizeObserverErrDiv = document.getElementById("webpack-dev-server-client-overlay-div");
+              const resizeObserverErr = document.getElementById("webpack-dev-server-client-overlay");
+              if (resizeObserverErr) {
+                resizeObserverErr.setAttribute("style", "display: none");
+              }
+              if (resizeObserverErrDiv) {
+                resizeObserverErrDiv.setAttribute("style", "display: none");
+              }
+            }
+    };
+    window.addEventListener("error", resizeErrorListener);
+ 
+    return () => window.removeEventListener("error", resizeErrorListener);
+  }, []);
 
   if (direction === 'horizontal') {
     resizableProps = {
