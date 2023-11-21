@@ -1,4 +1,4 @@
 const CellList: React.FC = () => {
-    return <div>Cell list</div>
+    return <div>Cell List</div>
 };
 export default CellList;
