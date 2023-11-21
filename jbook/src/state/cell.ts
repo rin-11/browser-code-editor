@@ -4,3 +4,4 @@ export interface Cell {
   type: CellTypes;
   content: string;
 }
+
