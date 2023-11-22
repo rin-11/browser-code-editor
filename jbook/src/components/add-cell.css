@@ -1,7 +1,7 @@
 .add-cell {
   position: relative;
-  opacity: 0;
-  transition: opacity 0.3s ease-in 0.1s;
+  opacity: 0.2;
+  transition: opacity 0.2s ease-in 0.1s;
   margin: 8px 0;
 }
 
@@ -9,7 +9,7 @@
   opacity: 1;
 }
 
-.add-cell.force-visible {
+.add-cell .force-visible {
   opacity: 1;
 }
 
