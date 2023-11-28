@@ -1,5 +1,6 @@
 
 import { Command } from 'commander';
+import { serve }from 'local-api';
 
 
 export const serveCommand = new Command()
@@ -14,5 +15,5 @@ export const serveCommand = new Command()
     /// <> indicate required value for port hence default provided
 
     .action((filename = 'notebook.js', options: { port: string }) => {
-        console.log(filename, options)
+        serve(parseInt(options.port), filename, '/');
   });
