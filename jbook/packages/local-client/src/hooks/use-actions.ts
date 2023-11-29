@@ -10,6 +10,3 @@ export const useActions = () => {
     return bindActionCreators(actionCreators, dispatch);
   }, [dispatch]);
 };
-
-
-
