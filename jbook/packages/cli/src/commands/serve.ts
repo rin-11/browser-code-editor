@@ -2,6 +2,9 @@ import path from 'path';
 import { Command } from 'commander';
 import { serve }from 'local-api';
 
+interface LocalApiError {
+  code: string;
+}
 
 export const serveCommand = new Command()
     .command('serve [filename]')
@@ -14,8 +17,27 @@ export const serveCommand = new Command()
     // option for user to determine which port to run the server on else default 4005
     /// <> indicate required value for port hence default provided
 
-    .action((filename = 'notebook.js', options: { port: string }) => {
+    .action(async (filename = "notebook.js", options: { port: string }) => {
+ 
+      const isLocalApiError = (err: any): err is LocalApiError => {
+        return typeof err.code === "string";
+      };
+
+    // error handling in case port is already running
+      try {
         // find the path the user is saving the file in
         const dir = path.join(process.cwd(), path.dirname(filename));
-        serve(parseInt(options.port), path.basename(filename), dir);
-      });
+        await serve(parseInt(options.port), path.basename(filename), dir);
+      } catch (err) {
+        if (isLocalApiError(err)) {
+          if (err.code === "EADDRINUSE") {
+            console.error("Port is in use. Try running on a different port.");
+          }
+        } else if (err instanceof Error) {
+          console.log("Heres the problem", err.message);
+        }
+        process.exit(1);
+      }
+    });
+  
+
