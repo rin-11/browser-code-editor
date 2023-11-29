@@ -31,7 +31,7 @@ export const serveCommand = new Command()
 
         // let user know server was successfully started
         console.log(
-          `Opened ${filename}. Navigate to https:..localhost:${options.port} to edit this file.`
+          `Opened ${filename}. Navigate to https:localhost:${options.port} to edit this file.`
         )
 
 
