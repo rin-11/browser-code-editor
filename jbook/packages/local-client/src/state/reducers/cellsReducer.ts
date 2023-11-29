@@ -22,14 +22,36 @@ const initialState: CellsState = {
 const reducer = produce(
   (state: CellsState = initialState, action: Action): CellsState | void => {
     switch (action.type) {
+      case ActionType.FETCH_CELLS:
+        state.loading = true;
+        state.error = null;
+  
+        return state;
+      case ActionType.FETCH_CELLS_COMPLETE:
+        state.order = action.payload.map((cell) => cell.id);
+        state.data = action.payload.reduce((acc, cell) => {
+          acc[cell.id] = cell;
+          return acc;
+        }, {} as CellsState['data']);
+  
+        return state;
+
+      case ActionType.FETCH_CELLS_ERROR:
+        state.loading = false;
+        state.error = action.payload;
+  
+        return state;
+
       case ActionType.UPDATE_CELL:
         const { id, content } = action.payload;
         state.data[id].content = content;
         return state;
+
       case ActionType.DELETE_CELL:
         delete state.data[action.payload];
         state.order = state.order.filter((id) => id !== action.payload);
         return state;
+
       case ActionType.MOVE_CELL:
         const { direction } = action.payload;
         const index = state.order.findIndex((id) => id === action.payload.id);
@@ -43,6 +65,7 @@ const reducer = produce(
         state.order[targetIndex] = action.payload.id;
  
         return state;
+        
       case ActionType.INSERT_CELL_AFTER:
         const cell: Cell = {
           content: '',
