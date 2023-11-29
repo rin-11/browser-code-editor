@@ -28,14 +28,26 @@ export const serveCommand = new Command()
         // find the path the user is saving the file in
         const dir = path.join(process.cwd(), path.dirname(filename));
         await serve(parseInt(options.port), path.basename(filename), dir);
+
+        // let user know server was successfully started
+        console.log(
+          `Opened ${filename}. Navigate to https:..localhost:${options.port} to edit this file.`
+        )
+
+
       } catch (err) {
         if (isLocalApiError(err)) {
+
+          // server is already in use
           if (err.code === "EADDRINUSE") {
             console.error("Port is in use. Try running on a different port.");
           }
+        
+        // any other error type
         } else if (err instanceof Error) {
           console.log("Heres the problem", err.message);
         }
+        // cancel the program if error found
         process.exit(1);
       }
     });
