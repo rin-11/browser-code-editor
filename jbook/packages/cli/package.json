@@ -2,6 +2,9 @@
   "name": "rin11",
   "version": "1.0.0",
   "description": "",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "tsc --watch --preserveWatchOutput"
   },
