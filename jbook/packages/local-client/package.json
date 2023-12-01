@@ -2,6 +2,9 @@
   "name": "@rin11/local-client",
   "version": "0.1.0",
   "private": true,
+  "files": [
+    "build"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@monaco-editor/react": "3.7.5",
