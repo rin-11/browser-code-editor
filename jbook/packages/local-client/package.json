@@ -5,6 +5,9 @@
   "files": [
     "build"
   ],
+  "publishConfig": {
+    "acess": "public"
+  },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@monaco-editor/react": "3.7.5",
@@ -34,7 +37,11 @@
     "redux": "4.2.1",
     "redux-thunk": "2.4.2",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "assert": "^2.1.0",
+    "constants-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "react-app-rewired": "^2.2.1"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -59,11 +66,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "assert": "^2.1.0",
-    "constants-browserify": "^1.0.0",
-    "os-browserify": "^0.3.0",
-    "react-app-rewired": "^2.2.1"
   }
 }

@@ -5,6 +5,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "acess": "public"
+  },
   "main": "dist/index.js",
   "types": "dist/index.js",
   "scripts": {
