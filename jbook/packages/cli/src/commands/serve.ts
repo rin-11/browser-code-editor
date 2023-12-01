@@ -1,6 +1,6 @@
 import path from 'path';
 import { Command } from 'commander';
-import { serve }from 'local-api';
+import { serve }from '@rin11/local-api';
 
 interface LocalApiError {
   code: string;

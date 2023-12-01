@@ -1,5 +1,5 @@
 {
-  "name": "local-api",
+  "name": "@rin11/local-api",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -20,6 +20,6 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
-    "local-client": "^0.1.0"
+    "@rin11/local-client": "^0.1.0"
   }
 }

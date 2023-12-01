@@ -1,5 +1,5 @@
 {
-  "name": "local-client",
+  "name": "@rin11/local-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
